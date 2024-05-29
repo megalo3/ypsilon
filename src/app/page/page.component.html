@@ -1,0 +1,33 @@
+<ng-container *ngIf="route.children.length === 0">
+    <app-title />
+
+    <div *ngIf="data?.intro">
+        {{ data.intro }}
+        <br />
+        <br />
+    </div>
+
+    <ng-container *ngFor="let child of children">
+        <app-menu-item [name]="child.title || ''" [path]="child.path" [data]="child.data || {}" />
+    </ng-container>
+
+    <ng-container *ngFor="let item of data?.toggleItems">
+        <app-toggle-item [item]="item" />
+    </ng-container>
+
+    <ng-container *ngIf="data?.list">
+        <ul
+            [ngClass]="{ordered: data.listType === 'Ordered', unordered: data.listType === 'Unordered'}"
+        >
+            <li *ngFor="let item of data?.list">{{ item }}</li>
+        </ul>
+    </ng-container>
+
+    <br />
+    <div>===========</div>
+    <br />
+    <div *ngIf="showBack">
+        <a routerLink=".."> &lt; BACK </a>
+    </div>
+</ng-container>
+<router-outlet></router-outlet>

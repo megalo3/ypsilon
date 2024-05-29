@@ -1,10 +1,19 @@
 import { Injectable, Signal, signal } from '@angular/core';
 
+export enum Speed {
+    Normal = 30,
+    Fast = 10,
+    Slow = 250,
+    Pause = 500
+}
+
 @Injectable({
     providedIn: 'root',
 })
 export class SlowTypeService {
     constructor() {}
+
+
 
     slowType(value: string, time: number = 30): Signal<string> {
         const slowTypeSignal = signal<string>('');

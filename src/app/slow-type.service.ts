@@ -20,4 +20,24 @@ export class SlowTypeService {
 
         return slowTypeSignal;
     }
+
+    slowTypeChain(inputs: { value: string; time: number }[]): Signal<string>[] {
+        const signals: Signal<string>[] = [];
+        inputs.forEach(() => signals.push(signal<string>('')));
+        let totalTime = 0;
+        inputs.forEach((input, index) => {
+            setTimeout(() => {
+                signals[index] = this.slowType(
+                    input.value,
+                    input.time
+                );
+            }, totalTime);
+            totalTime += this.#getTypeFullTime(input.value, input.time);
+        });
+        return signals;
+    }
+
+    #getTypeFullTime(value: string, time: number): number {
+        return time * value.length;
+    }
 }

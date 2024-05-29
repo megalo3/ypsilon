@@ -1,18 +1,24 @@
 <app-title />
-<div>{{ text() }}</div>
-    <!-- Checking life support....... Done.
-Checking main systems....... Done.
-
-WARNING: Airflow 82.4%. Check crew quarters vents for blockage.
-WARNING: Shower #5 non-functional as of 1 day(s).
-
-NOTICE: Air filters replaced 455 day(s) ago.
-NOTICE: Mineshaft lift maintained 455 day(s) ago.
-
-=====
-
-SUMMARY:
-All systems operating within acceptable parameters. -->
+<!-- Checking life support....... Done. -->
+<div>{{ chain[0]() }}{{ chain[1]() }} {{ chain[2]() }}</div>
+<!-- Checking main systems....... Done. -->
+<div>{{ chain[4]() }}{{ chain[5]() }} {{ chain[6]() }}</div>
+<!-- WARNING: Airflow 82.4%. Check crew quarters vents for blockage. -->
+<div class="error">{{ chain[8]() }}</div>
+<!-- WARNING: Shower #5 non-functional as of 1 day(s). -->
+<div class="error">{{ chain[10]() }}</div>
+<!-- NOTICE: Air filters replaced 455 day(s) ago. -->
+<div>{{ chain[12]() }}</div>
+<!-- NOTICE: Mineshaft lift maintained 455 day(s) ago. -->
+<div>{{ chain[14]() }}</div>
+<!-- =========== -->
+<div *ngIf="chain[16]().length > 0"><br /></div>
+<div>{{ chain[16]() }}</div>
+<div *ngIf="chain[16]().length > 0"><br /></div>
+<!-- SUMMARY: -->
+<div>{{ chain[17]() }}</div>
+<!-- All systems operating within acceptable parameters. -->
+<div>{{ chain[18]() }}</div>
 <br />
 <div>===========</div>
 <br />

@@ -14,7 +14,9 @@ export class AppComponent {
     title = 'ypsilon';
     keyHistory: string[] = [];
 
-    constructor(public nav: NavigationService) {}
+    constructor(public nav: NavigationService) {
+        prompt();
+    }
 
     @HostListener('window:keydown.ArrowUp', ['$event']) onArrowUp() {
         this.nav.navigate('Up');

@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import "simple-keyboard/build/css/index.css";
+
 body {
     background: #2f2f2f;
     color: #fd9300;
@@ -23,18 +24,11 @@ a:hover {
 a:hover.error {
     background: #7a1b1b;
 }
-ul.unordered {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-ul.ordered {
-    list-style: decimal-leading-zero;
-    margin: 0;
-}
+
 
 .vt323-regular {
     font-family: "VT323", monospace;
     font-weight: 400;
     font-style: normal;
 }
+

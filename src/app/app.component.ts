@@ -1,13 +1,12 @@
 import { Component, HostListener } from '@angular/core';
 import { NavigationService } from './navigation.service';
 import { RouterOutlet } from '@angular/router';
-import { TitleComponent } from './title/title.component';
-import { MenuItemComponent } from './menu-item/menu-item.component';
+import { KeyboardComponent } from './keyboard/keyboard.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, TitleComponent, MenuItemComponent],
+    imports: [RouterOutlet, KeyboardComponent],
     templateUrl: './app.component.html',
 })
 export class AppComponent {

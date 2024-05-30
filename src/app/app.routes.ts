@@ -14,7 +14,7 @@ export const AuthGuard: CanActivateFn = (
 export const routes: Routes = [
     {
         path: '',
-        title: 'Main Menu',
+        title: 'Mainer Menu',
         component: PageComponent,
         children: [
             {

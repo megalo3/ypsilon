@@ -1,4 +1,5 @@
-<br />
-<div>{{title}} <span *ngIf="navigation.admin">[A]</span></div>
+<div *ngIf="!navigation.admin"><br /></div>
+<div *ngIf="navigation.admin">Welcome, Sonya</div>
+<div>{{title}}</div>
 <div>===========</div>
 <br />

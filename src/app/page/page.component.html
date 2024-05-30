@@ -16,11 +16,7 @@
     </ng-container>
 
     <ng-container *ngIf="data?.list">
-        <ul
-            [ngClass]="{ordered: data.listType === 'Ordered', unordered: data.listType === 'Unordered'}"
-        >
-            <li *ngFor="let item of data?.list">{{ item }}</li>
-        </ul>
+        <app-list [list]="data.list || []" [listType]="data.listType" />
     </ng-container>
 
     <br />

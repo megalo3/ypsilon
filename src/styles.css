@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background: #2F2F2F;
-  color: #FD9300;
-  font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
-  font-size: 24px;
+    background: #2f2f2f;
+    color: #fd9300;
+    font-family: "VT323", "Courier New", Courier, monospace;
+    font-size: 24px;
 }
-a, a:visited {
-    color: #FD9300;
+a,
+a:visited {
+    color: #fd9300;
     text-decoration: none;
     cursor: pointer;
 }
@@ -32,88 +33,8 @@ ul.ordered {
     margin: 0;
 }
 
-
-
-.ibm-plex-mono-thin {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 100;
-    font-style: normal;
-  }
-
-  .ibm-plex-mono-extralight {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 200;
-    font-style: normal;
-  }
-
-  .ibm-plex-mono-light {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 300;
-    font-style: normal;
-  }
-
-  .ibm-plex-mono-regular {
-    font-family: "IBM Plex Mono", monospace;
+.vt323-regular {
+    font-family: "VT323", monospace;
     font-weight: 400;
     font-style: normal;
-  }
-
-  .ibm-plex-mono-medium {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  .ibm-plex-mono-semibold {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 600;
-    font-style: normal;
-  }
-
-  .ibm-plex-mono-bold {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 700;
-    font-style: normal;
-  }
-
-  .ibm-plex-mono-thin-italic {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 100;
-    font-style: italic;
-  }
-
-  .ibm-plex-mono-extralight-italic {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 200;
-    font-style: italic;
-  }
-
-  .ibm-plex-mono-light-italic {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  .ibm-plex-mono-regular-italic {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 400;
-    font-style: italic;
-  }
-
-  .ibm-plex-mono-medium-italic {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 500;
-    font-style: italic;
-  }
-
-  .ibm-plex-mono-semibold-italic {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 600;
-    font-style: italic;
-  }
-
-  .ibm-plex-mono-bold-italic {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 700;
-    font-style: italic;
-  }
+}

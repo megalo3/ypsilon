@@ -5,11 +5,22 @@ import { ActivatedRoute, Route, RouterLink, RouterOutlet } from '@angular/router
 import { IPageData } from './page';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ToggleItemComponent } from '../toggle-item/toggle-item.component';
+import { ListComponent } from '../list/list.component';
 
 @Component({
     selector: 'app-page',
     standalone: true,
-    imports: [MenuItemComponent, TitleComponent, RouterLink, NgFor, RouterOutlet, NgIf, ToggleItemComponent, NgClass],
+    imports: [
+        MenuItemComponent,
+        TitleComponent,
+        RouterLink,
+        NgFor,
+        RouterOutlet,
+        NgIf,
+        ToggleItemComponent,
+        NgClass,
+        ListComponent,
+    ],
     templateUrl: './page.component.html',
     styleUrl: './page.component.scss',
 })

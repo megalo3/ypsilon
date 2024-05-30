@@ -1,13 +1,11 @@
-import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot, Routes } from '@angular/router';
+import { CanActivateFn, Routes } from '@angular/router';
 import { PageComponent } from './page/page.component';
 import { DiagnosticsComponent } from './diagnostics/diagnostics.component';
 import { NavigationService } from './navigation.service';
 import { inject } from '@angular/core';
+import { MapComponent } from './map/map.component';
 
-export const AuthGuard: CanActivateFn = (
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-): boolean => {
+export const AuthGuard: CanActivateFn = (): boolean => {
     return inject(NavigationService).admin;
 };
 
@@ -20,8 +18,7 @@ export const routes: Routes = [
             {
                 path: 'station-map',
                 title: 'Station Map',
-                component: PageComponent,
-                children: [],
+                component: MapComponent,
             },
             {
                 path: 'diagnostics',

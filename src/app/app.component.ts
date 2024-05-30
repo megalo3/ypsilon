@@ -15,7 +15,7 @@ export class AppComponent {
     keyHistory: string[] = [];
 
     constructor(public nav: NavigationService) {
-        prompt();
+        // prompt();
     }
 
     @HostListener('window:keydown.ArrowUp', ['$event']) onArrowUp() {

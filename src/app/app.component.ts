@@ -1,21 +1,18 @@
 import { Component, HostListener } from '@angular/core';
 import { NavigationService } from './navigation.service';
 import { RouterOutlet } from '@angular/router';
-import { KeyboardComponent } from './keyboard/keyboard.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, KeyboardComponent],
+    imports: [RouterOutlet],
     templateUrl: './app.component.html',
 })
 export class AppComponent {
     title = 'ypsilon';
     keyHistory: string[] = [];
 
-    constructor(public nav: NavigationService) {
-        // prompt();
-    }
+    constructor(public nav: NavigationService) {}
 
     @HostListener('window:keydown.ArrowUp', ['$event']) onArrowUp() {
         this.nav.navigate('Up');

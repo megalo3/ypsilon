@@ -7,8 +7,8 @@
         <br />
     </div>
 
-    <ng-container *ngFor="let child of children">
-        <app-menu-item [name]="child.title || ''" [path]="child.path" [data]="child.data || {}" />
+    <ng-container *ngFor="let child of children; let i = index">
+        <app-menu-item [name]="child.title || ''" [path]="child.path" [data]="child.data || {}" [selected]="selectedIndex === i + 1" />
     </ng-container>
 
     <ng-container *ngFor="let item of data?.toggleItems">

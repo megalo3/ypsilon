@@ -15,10 +15,10 @@ export class AppComponent {
     constructor(public nav: NavigationService) {}
 
     @HostListener('window:keydown.ArrowUp', ['$event']) onArrowUp() {
-        this.nav.navigate('Up');
+        this.nav.navigate.next('Up');
     }
     @HostListener('window:keydown.ArrowDown', ['$event']) onArrowDown() {
-        this.nav.navigate('Down');
+        this.nav.navigate.next('Down');
     }
     @HostListener('window:keydown.Enter', ['$event']) onEnter() {
         this.nav.select();

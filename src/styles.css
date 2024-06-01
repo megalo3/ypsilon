@@ -10,7 +10,7 @@ a:visited {
     text-decoration: none;
     cursor: pointer;
 }
-a:hover {
+a:hover, a.selected {
     background: rgb(92, 92, 92);
 }
 .menu-item {
@@ -19,7 +19,7 @@ a:hover {
 .error {
     color: #ff5454;
 }
-a:hover.error {
+a:hover.error, a.selected.error {
     background: #7a1b1b;
 }
 

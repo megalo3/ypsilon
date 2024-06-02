@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TitleComponent } from '../title/title.component';
+import { Subscription } from 'rxjs';
+import { NavigationService } from '../navigation.service';
 
 @Component({
     selector: 'app-map',
@@ -9,4 +11,24 @@ import { TitleComponent } from '../title/title.component';
     templateUrl: './map.component.html',
     styleUrl: './map.component.scss',
 })
-export class MapComponent {}
+export class MapComponent implements OnInit, OnDestroy {
+    #subscriptions = new Subscription();
+
+    constructor(
+        private nav: NavigationService,
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
+
+    ngOnInit(): void {
+        this.#subscriptions.add(
+            this.nav.select.subscribe(() =>
+                this.router.navigate(['..'], { relativeTo: this.route })
+            )
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.#subscriptions.unsubscribe();
+    }
+}

@@ -61,7 +61,7 @@ export class PageComponent implements OnInit, OnDestroy {
     #subscriptions = new Subscription();
 
     constructor(
-        public route: ActivatedRoute,
+        private route: ActivatedRoute,
         private nav: NavigationService,
         private router: Router,
         private slowType: SlowTypeService

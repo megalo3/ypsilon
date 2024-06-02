@@ -15,6 +15,7 @@ import { ToggleItemComponent } from '../toggle-item/toggle-item.component';
 import { ListComponent } from '../list/list.component';
 import { NavigationService } from '../navigation.service';
 import { Subscription } from 'rxjs';
+import { IToggleItem } from '../toggle-item/toggle-item';
 
 @Component({
     selector: 'app-page',
@@ -51,6 +52,10 @@ export class PageComponent implements OnInit, OnDestroy {
         return this.route.snapshot.url.length > 0;
     }
 
+    get items(): (Route | IToggleItem)[] {
+        return [...this.children, ...(this.data?.toggleItems || [])];
+    }
+
     constructor(
         public route: ActivatedRoute,
         private nav: NavigationService,
@@ -64,7 +69,8 @@ export class PageComponent implements OnInit, OnDestroy {
         this.#subscriptions.add(
             this.nav.navigate.subscribe((direction) => {
                 if (!this.hasChildren) {
-                    const length = this.children.length + (this.hasBackButton ? 1 : 0);
+                    const length =
+                        this.items.length + (this.hasBackButton ? 1 : 0);
                     this.nav.loopNav(direction, length);
                 }
             })
@@ -73,9 +79,8 @@ export class PageComponent implements OnInit, OnDestroy {
             this.nav.select.subscribe(() => {
                 if (!this.hasChildren) {
                     // If there is no child, it is a back button
-                    const child = this.children[this.selectedIndex - 1];
-                    const path = !child ? '..' : this.children[this.selectedIndex - 1].path;
-                    this.router.navigate([path], { relativeTo: this.route });
+                    const child = this.items[this.selectedIndex - 1];
+                    this.selectItem(child);
                 }
             })
         );
@@ -84,5 +89,34 @@ export class PageComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.nav.reset();
         this.#subscriptions.unsubscribe();
+    }
+
+    selectItem(item: Route | IToggleItem | undefined): void {
+        // Back Button
+        if (!item) {
+            this.router.navigate(['..'], { relativeTo: this.route });
+            return;
+        }
+
+        // Route
+        if ((item as Route).path) {
+            this.router.navigate([(item as Route).path], {
+                relativeTo: this.route,
+            });
+            return;
+        }
+
+        // Toggle Item
+        if ((item as IToggleItem).toggleValues) {
+            this.toggle(item as IToggleItem);
+        }
+    }
+
+    toggle(item: IToggleItem) {
+        const status =
+            item.toggleValues.filter((value) => value !== item.status) || [];
+        if (item && status.length > 0) {
+            item.status = status[0];
+        }
     }
 }

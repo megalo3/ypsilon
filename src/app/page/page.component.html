@@ -11,8 +11,8 @@
         <app-menu-item [name]="child.title || ''" [path]="child.path" [data]="child.data || {}" [selected]="selectedIndex === i + 1" />
     </ng-container>
 
-    <ng-container *ngFor="let item of data?.toggleItems">
-        <app-toggle-item [item]="item" />
+    <ng-container *ngFor="let item of data?.toggleItems; let i = index">
+        <app-toggle-item [item]="item" [selected]="selectedIndex === i + 1" />
     </ng-container>
 
     <ng-container *ngIf="data?.list">
@@ -23,7 +23,7 @@
     <div>===========</div>
     <br />
     <div *ngIf="showBack">
-        <a [ngClass]="{selected: selectedIndex === children.length + 1}"> &lt; BACK </a>
+        <a [ngClass]="{selected: selectedIndex === items.length + 1}"> &lt; BACK </a>
     </div>
 </ng-container>
 <router-outlet></router-outlet>

@@ -1,3 +1,5 @@
 <div class="menu-item">
-    <a (click)="toggle()" [ngClass]="{error: item?.error}"> &gt; {{ item?.name }} :: {{ item?.status }}</a>
+    <a [ngClass]="{ error: item?.error, selected: selected }">
+        &gt; {{ item?.name }} :: {{ item?.status }}</a
+    >
 </div>

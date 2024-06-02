@@ -1,14 +1,18 @@
 <ng-container *ngIf="!hasChildren">
     <app-title />
 
-    <div *ngIf="data?.intro">
-        {{ data.intro }}
-        <br />
+    <div *ngIf="data?.intro" [ngClass]="{ error: data.introWarning }">
+        <div *ngFor="let item of introChain">{{ item() }}</div>
         <br />
     </div>
 
     <ng-container *ngFor="let child of children; let i = index">
-        <app-menu-item [name]="child.title || ''" [path]="child.path" [data]="child.data || {}" [selected]="selectedIndex === i + 1" />
+        <app-menu-item
+            [name]="child.title || ''"
+            [path]="child.path"
+            [data]="child.data || {}"
+            [selected]="selectedIndex === i + 1"
+        />
     </ng-container>
 
     <ng-container *ngFor="let item of data?.toggleItems; let i = index">
@@ -23,7 +27,9 @@
     <div>===========</div>
     <br />
     <div *ngIf="showBack">
-        <a [ngClass]="{selected: selectedIndex === items.length + 1}"> &lt; BACK </a>
+        <a [ngClass]="{ selected: selectedIndex === items.length + 1 }">
+            &lt; BACK
+        </a>
     </div>
 </ng-container>
 <router-outlet></router-outlet>

@@ -29,7 +29,7 @@ export const routes: Routes = [
                 path: 'schedule',
                 title: 'Schedule',
                 data: {
-                    intro: 'Docking bay activity (past 6 months):',
+                    intro: ['Docking bay activity (past 6 months):'],
                     listType: 'Unordered',
                     list: [
                         '2366-06-12.0633 - Bay 2 : Arrive :: Tempest',
@@ -64,7 +64,7 @@ export const routes: Routes = [
                 path: 'comms',
                 title: 'Comms',
                 data: {
-                    intro: '2 vessels detected in proximity',
+                    intro: ['2 vessels detected in proximity'],
                     toggleItems: [
                         {
                             name: 'HAIL TEMPEST',
@@ -84,7 +84,7 @@ export const routes: Routes = [
                 path: 'controls',
                 title: 'Controls',
                 data: {
-                    intro: '[A] :: Administrator access only',
+                    intro: ['[A] :: Administrator access only'],
                 },
                 component: PageComponent,
                 children: [
@@ -177,7 +177,11 @@ export const routes: Routes = [
                                 title: 'Life Support',
                                 component: PageComponent,
                                 data: {
-                                    intro: 'WARNING: Disabling life support is a violation of company policy #2778-A. ISHIYAMA DYNAMICS assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                    intro: [
+                                        'WARNING: Disabling life support is a violation of company policy #2778-A.',
+                                        'ISHIYAMA DYNAMICS assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                    ],
+                                    introWarning: true,
                                     toggleItems: [
                                         {
                                             name: 'Life Support',
@@ -195,7 +199,11 @@ export const routes: Routes = [
                                 title: 'Self Destruct',
                                 component: PageComponent,
                                 data: {
-                                    intro: 'WARNING: Destruction of corporate property is a violation of company policy #2778-B. ISHIYAMA DYNAMICS assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                    intro: [
+                                        'WARNING: Destruction of corporate property is a violation of company policy #2778-B.',
+                                        'ISHIYAMA DYNAMICS assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                    ],
+                                    introWarning: true,
                                     toggleItems: [
                                         {
                                             name: 'Activate Self Destruct',

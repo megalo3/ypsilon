@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Signal } from '@angular/core';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 import { TitleComponent } from '../title/title.component';
 import {
@@ -16,6 +16,7 @@ import { ListComponent } from '../list/list.component';
 import { NavigationService } from '../navigation.service';
 import { Subscription } from 'rxjs';
 import { IToggleItem } from '../toggle-item/toggle-item';
+import { SlowTypeService, Speed } from '../slow-type.service';
 
 @Component({
     selector: 'app-page',
@@ -39,10 +40,11 @@ export class PageComponent implements OnInit, OnDestroy {
     data: IPageData = {};
     children: Route[] = [];
     showBack = false;
+    introChain: Signal<string>[] = [];
+
     get hasChildren(): boolean {
         return this.route.children.length !== 0;
     }
-    #subscriptions = new Subscription();
 
     get selectedIndex(): number {
         return this.nav.selectedIndex;
@@ -56,10 +58,13 @@ export class PageComponent implements OnInit, OnDestroy {
         return [...this.children, ...(this.data?.toggleItems || [])];
     }
 
+    #subscriptions = new Subscription();
+
     constructor(
         public route: ActivatedRoute,
         private nav: NavigationService,
-        private router: Router
+        private router: Router,
+        private slowType: SlowTypeService
     ) {}
 
     ngOnInit(): void {
@@ -84,6 +89,14 @@ export class PageComponent implements OnInit, OnDestroy {
                 }
             })
         );
+
+        if (this.data.intro) {
+            const chainValues = this.data.intro.map((item) => ({
+                value: item,
+                time: Speed.Normal,
+            }));
+            this.introChain = this.slowType.slowTypeChain(chainValues);
+    }
     }
 
     ngOnDestroy(): void {

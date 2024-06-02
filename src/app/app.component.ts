@@ -12,7 +12,6 @@ export class AppComponent {
     title = 'ypsilon';
     keyHistory: string[] = [];
 
-    constructor(public nav: NavigationService) {}
 
     @HostListener('window:keydown.ArrowUp', ['$event']) onArrowUp() {
         this.nav.navigate.next('Up');
@@ -21,7 +20,7 @@ export class AppComponent {
         this.nav.navigate.next('Down');
     }
     @HostListener('window:keydown.Enter', ['$event']) onEnter() {
-        this.nav.select();
+        this.nav.select.next();
     }
     @HostListener('window:keydown', ['$event']) onKeyDown(e: { key: string }) {
         if (e.key.length === 1 && /[a-zA-Z]/.test(e.key)) {
@@ -34,4 +33,6 @@ export class AppComponent {
             }
         }
     }
+
+    constructor(public nav: NavigationService) {}
 }

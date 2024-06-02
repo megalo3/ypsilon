@@ -1,4 +1,4 @@
-<ng-container *ngIf="route.children.length === 0">
+<ng-container *ngIf="!hasChildren">
     <app-title />
 
     <div *ngIf="data?.intro">
@@ -23,7 +23,7 @@
     <div>===========</div>
     <br />
     <div *ngIf="showBack">
-        <a routerLink=".."> &lt; BACK </a>
+        <a [ngClass]="{selected: selectedIndex === children.length + 1}"> &lt; BACK </a>
     </div>
 </ng-container>
 <router-outlet></router-outlet>

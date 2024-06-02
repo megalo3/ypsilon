@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Subject, filter, map } from 'rxjs';
 
 export type Direction = 'Up' | 'Down';
 
@@ -8,9 +9,26 @@ export type Direction = 'Up' | 'Down';
 })
 export class NavigationService {
     admin = false;
-    selectedIndex = 0;
+    selectedIndex = 1;
     navigate = new Subject<Direction>();
-    constructor() {}
+    select = new Subject<void>();
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+    ) {
+        this.#subscribeToTitleChanges();
+    }
+
+    #subscribeToTitleChanges() {
+        this.router.events
+            .pipe(
+                filter((event) => event instanceof NavigationEnd),
+                map(() => this.activatedRoute),
+            )
+            .subscribe(() => {
+                this.reset();
+            });
+    }
 
     loopNav(direction: 'Up' | 'Down', totalItems: number) {
         let value = this.selectedIndex;
@@ -30,11 +48,7 @@ export class NavigationService {
     }
 
     reset() {
-        this.selectedIndex = 0;
-    }
-
-    select() {
-        console.log('selecting nav option');
+        this.selectedIndex = 1;
     }
 
     toggleAdmin() {

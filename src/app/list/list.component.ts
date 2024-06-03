@@ -11,7 +11,6 @@ import { SlowTypeService, Speed } from '../slow-type.service';
 })
 export class ListComponent implements OnInit {
     @Input() list: string[] = [];
-    @Input() listType: 'Ordered' | 'Unordered' | undefined = 'Ordered';
     chain: Signal<string>[] = [];
 
     constructor(private slowType: SlowTypeService) {}

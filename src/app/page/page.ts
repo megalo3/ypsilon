@@ -6,5 +6,4 @@ export interface IPageData {
     list?: string[];
     admin?: boolean;
     toggleItems?: IToggleItem[];
-    listType?: 'Unordered' | 'Ordered';
 }

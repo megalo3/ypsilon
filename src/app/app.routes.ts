@@ -29,9 +29,9 @@ export const routes: Routes = [
                 path: 'schedule',
                 title: 'Schedule',
                 data: {
-                    intro: ['Docking bay activity (past 6 months):'],
-                    listType: 'Unordered',
                     list: [
+                        'Docking bay activity (past 6 months):',
+                        ' ',
                         '2366-06-12.0633 - Bay 2 : Arrive :: Tempest',
                         '2366-04-29.0834 - Bay 1 : Arrive :: Heracles',
                         '2366-03-02.1223 - Bay 2 : Depart :: Key Largo',
@@ -44,18 +44,17 @@ export const routes: Routes = [
                 path: 'roster',
                 title: 'Roster',
                 data: {
-                    listType: 'Ordered',
                     list: [
-                        'VERHOEVEN, Sonya :: Admin',
-                        'SINGH, Ashraf :: Breaker',
-                        'DE BEERS, Dana :: Lead Drill',
-                        'CHATZKEL, Jerome :: Asst. Drill',
-                        'TOBIN, Rosa :: Engineer',
-                        'RADIMIR, Mikhail :: Lead Engineer',
-                        'KANTARO, Kanji :: Loader',
-                        'BOWE, Morgan :: Loader',
-                        'NEKTARIOS, Ri :: Loader',
-                        'n/a',
+                        '01. VERHOEVEN, Sonya :: Admin',
+                        '02. SINGH, Ashraf :: Breaker',
+                        '03. DE BEERS, Dana :: Lead Drill',
+                        '04. CHATZKEL, Jerome :: Asst. Drill',
+                        '05. TOBIN, Rosa :: Engineer',
+                        '06. RADIMIR, Mikhail :: Lead Engineer',
+                        '07. KANTARO, Kanji :: Loader',
+                        '08. BOWE, Morgan :: Loader',
+                        '09. NEKTARIOS, Ri :: Loader',
+                        '10. n/a',
                     ],
                 },
                 component: PageComponent,
@@ -179,7 +178,7 @@ export const routes: Routes = [
                                 data: {
                                     intro: [
                                         'WARNING: Disabling life support is a violation of company policy #2778-A.',
-                                        'ISHIYAMA DYNAMICS assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                        'THE COMPANY assumes no responsibility or liabilities resulting from the improper use of this feature.',
                                     ],
                                     introWarning: true,
                                     toggleItems: [
@@ -201,7 +200,7 @@ export const routes: Routes = [
                                 data: {
                                     intro: [
                                         'WARNING: Destruction of corporate property is a violation of company policy #2778-B.',
-                                        'ISHIYAMA DYNAMICS assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                        'THE COMPANY assumes no responsibility or liabilities resulting from the improper use of this feature.',
                                     ],
                                     introWarning: true,
                                     toggleItems: [

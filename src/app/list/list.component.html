@@ -1,8 +1,1 @@
-<ul
-    [ngClass]="{
-        ordered: listType === 'Ordered',
-        unordered: listType === 'Unordered'
-    }"
->
-    <li *ngFor="let item of chain">{{ item() }}</li>
-</ul>
+<div *ngFor="let item of chain">{{ item() }}</div>

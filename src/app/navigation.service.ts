@@ -1,5 +1,6 @@
-import { Injectable, signal } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Injectable, OnInit } from '@angular/core';
+import { coerceBoolean } from '@angular/cdk/coercion';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, filter, map } from 'rxjs';
 
 export type Direction = 'Up' | 'Down';
@@ -7,16 +8,25 @@ export type Direction = 'Up' | 'Down';
 @Injectable({
     providedIn: 'root',
 })
-export class NavigationService {
+export class NavigationService implements OnInit {
     admin = false;
     selectedIndex = 1;
     navigate = new Subject<Direction>();
     select = new Subject<void>();
+
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute
     ) {
         this.#subscribeToTitleChanges();
+    }
+
+    ngOnInit(): void {
+        const savedAdmin = coerceBoolean(localStorage.getItem('ypsilon-admin'));
+        debugger;
+        if (savedAdmin) {
+            this.admin = savedAdmin;
+        }
     }
 
     #subscribeToTitleChanges() {

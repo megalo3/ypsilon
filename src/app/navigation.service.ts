@@ -1,7 +1,11 @@
 import { Injectable, signal } from '@angular/core';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import {
+    coerceBooleanProperty,
+    coerceNumberProperty,
+} from '@angular/cdk/coercion';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, filter, map } from 'rxjs';
+import { IToggleItem } from './toggle-item/toggle-item';
 
 export type Direction = 'Up' | 'Down';
 
@@ -72,19 +76,34 @@ export class NavigationService {
         localStorage.setItem('ypsilon-admin', this.admin.toString());
     }
 
-    toggleSelfDestruct() {
-        if (!this.selfDestruct) {
-            this.selfDestruct = new Date().setTime(new Date().getTime() + 9 * 60 * 1000);
+    toggleSelfDestruct(usePassword = false) {
+        if (this.selfDestruct) {
+            if (usePassword) {
+                this.selfDestruct = undefined;
+                this.destructTimeRemaining.set('');
+                localStorage.removeItem('ypsilon-destruct');
+                // Reset toggle item title
+                const data = this.router.config
+                    .find((c) => c.path === '')
+                    ?.children?.find((c: any) => c.path === 'controls')
+                    ?.children?.find((c: any) => c.path === 'system')
+                    ?.children?.find((c: any) => c.path === 'self-destruct')
+                    ?.data;
+                const toggleItem = data ? data['toggleItems'][0] as IToggleItem : null;
+                if (toggleItem) {
+                    toggleItem.status = 'INACTIVE';
+                }
+            }
+        } else {
+            this.selfDestruct = new Date().setTime(
+                new Date().getTime() + 15 * 60 * 1000
+            );
             this.destructTimeRemaining.set('15:00');
             this.#startCountdown();
             localStorage.setItem(
                 'ypsilon-destruct',
                 this.selfDestruct.toString()
             );
-        } else {
-            this.selfDestruct = undefined;
-            this.destructTimeRemaining.set('');
-            localStorage.removeItem('ypsilon-destruct');
         }
     }
 
@@ -94,7 +113,7 @@ export class NavigationService {
         }
         const secondsRemaining = this.selfDestruct - Date.now();
         const minutes = Math.floor(secondsRemaining / 60000);
-        const seconds = Math.round((secondsRemaining % 60000)/1000);
+        const seconds = Math.round((secondsRemaining % 60000) / 1000);
         if (minutes < 0 || seconds < 0) {
             this.#stopCountdown();
             return '00:00';

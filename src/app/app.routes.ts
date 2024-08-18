@@ -206,7 +206,7 @@ export const routes: Routes = [
                                     toggleItems: [
                                         {
                                             name: 'Activate Self Destruct',
-                                            status: 'INACTIVE',
+                                            status: localStorage.getItem('ypsilon-destruct') ? 'ACTIVE' : 'INACTIVE',
                                             toggleValues: [
                                                 'INACTIVE',
                                                 'ACTIVE',

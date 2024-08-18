@@ -132,9 +132,11 @@ export class PageComponent implements OnInit, OnDestroy {
     toggle(item: IToggleItem) {
         if (item.name === 'Activate Self Destruct') {
             this.nav.toggleSelfDestruct();
+            item.status = 'ACTIVE';
+            return;
         }
-        const status =
-            item.toggleValues.filter((value) => value !== item.status) || [];
+
+        const status = item.toggleValues.filter((value) => value !== item.status) || [];
         if (item && status.length > 0) {
             item.status = status[0];
         }

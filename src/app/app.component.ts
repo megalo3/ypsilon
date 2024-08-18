@@ -27,11 +27,14 @@ export class AppComponent {
             if (this.keyHistory.length > 5) {
                 this.keyHistory.shift();
             }
-            if (this.keyHistory.join('') === 'admin') {
+            const history = this.keyHistory.join('');
+            if (/admin/.test(history)) {
                 this.nav.toggleAdmin();
+                this.keyHistory = [];
             }
-            if (this.keyHistory.join('') === 'undo') {
-                this.nav.toggleSelfDestruct();
+            if (/undo/.test(history)) {
+                this.nav.toggleSelfDestruct(true);
+                this.keyHistory = [];
             }
         }
     }

@@ -178,7 +178,7 @@ export const routes: Routes = [
                                 data: {
                                     intro: [
                                         'WARNING: Disabling life support is a violation of company policy #2778-A.',
-                                        'THE COMPANY assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                        'TANO-BAUER CORP assumes no responsibility or liabilities resulting from the improper use of this feature.',
                                     ],
                                     introWarning: true,
                                     toggleItems: [
@@ -200,13 +200,17 @@ export const routes: Routes = [
                                 data: {
                                     intro: [
                                         'WARNING: Destruction of corporate property is a violation of company policy #2778-B.',
-                                        'THE COMPANY assumes no responsibility or liabilities resulting from the improper use of this feature.',
+                                        'TANO-BAUER CORP assumes no responsibility or liabilities resulting from the improper use of this feature.',
                                     ],
                                     introWarning: true,
                                     toggleItems: [
                                         {
                                             name: 'Activate Self Destruct',
-                                            status: localStorage.getItem('ypsilon-destruct') ? 'ACTIVE' : 'INACTIVE',
+                                            status: localStorage.getItem(
+                                                'ypsilon-destruct'
+                                            )
+                                                ? 'ACTIVE'
+                                                : 'INACTIVE',
                                             toggleValues: [
                                                 'INACTIVE',
                                                 'ACTIVE',

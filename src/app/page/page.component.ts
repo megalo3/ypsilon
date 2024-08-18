@@ -58,6 +58,10 @@ export class PageComponent implements OnInit, OnDestroy {
         return [...this.children, ...(this.data?.toggleItems || [])];
     }
 
+    get destruct(): Signal<string> {
+        return this.nav.destructTimeRemaining;
+    }
+
     #subscriptions = new Subscription();
 
     constructor(
@@ -126,6 +130,9 @@ export class PageComponent implements OnInit, OnDestroy {
     }
 
     toggle(item: IToggleItem) {
+        if (item.name === 'Activate Self Destruct') {
+            this.nav.toggleSelfDestruct();
+        }
         const status =
             item.toggleValues.filter((value) => value !== item.status) || [];
         if (item && status.length > 0) {

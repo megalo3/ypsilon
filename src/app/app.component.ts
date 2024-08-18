@@ -12,7 +12,6 @@ export class AppComponent {
     title = 'ypsilon';
     keyHistory: string[] = [];
 
-
     @HostListener('window:keydown.ArrowUp', ['$event']) onArrowUp() {
         this.nav.navigate.next('Up');
     }
@@ -30,6 +29,9 @@ export class AppComponent {
             }
             if (this.keyHistory.join('') === 'admin') {
                 this.nav.toggleAdmin();
+            }
+            if (this.keyHistory.join('') === 'undo') {
+                this.nav.toggleSelfDestruct();
             }
         }
     }

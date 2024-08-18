@@ -13,8 +13,6 @@ export enum Speed {
 export class SlowTypeService {
     constructor() {}
 
-
-
     slowType(value: string, time: number = 30): Signal<string> {
         const slowTypeSignal = signal<string>('');
         let partialValue = '';

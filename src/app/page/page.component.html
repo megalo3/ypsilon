@@ -1,6 +1,13 @@
 <ng-container *ngIf="!hasChildren">
     <app-title />
 
+    <div *ngIf="destruct() !== ''" class="error">
+        Self destructing in {{ destruct() }}<br />
+        Please gather all valuables and proceed calmly to your exit vehicle.
+        <br />
+        <br />
+    </div>
+
     <div *ngIf="data?.intro" [ngClass]="{ error: data.introWarning }">
         <div *ngFor="let item of introChain">{{ item() }}</div>
         <br />

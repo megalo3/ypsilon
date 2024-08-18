@@ -1,5 +1,5 @@
-import { Injectable, OnInit } from '@angular/core';
-import { coerceBoolean } from '@angular/cdk/coercion';
+import { Injectable } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, filter, map } from 'rxjs';
 
@@ -8,7 +8,7 @@ export type Direction = 'Up' | 'Down';
 @Injectable({
     providedIn: 'root',
 })
-export class NavigationService implements OnInit {
+export class NavigationService {
     admin = false;
     selectedIndex = 1;
     navigate = new Subject<Direction>();
@@ -19,11 +19,13 @@ export class NavigationService implements OnInit {
         private activatedRoute: ActivatedRoute
     ) {
         this.#subscribeToTitleChanges();
+        this.init();
     }
 
-    ngOnInit(): void {
-        const savedAdmin = coerceBoolean(localStorage.getItem('ypsilon-admin'));
-        debugger;
+    init(): void {
+        const savedAdmin = coerceBooleanProperty(
+            localStorage.getItem('ypsilon-admin')
+        );
         if (savedAdmin) {
             this.admin = savedAdmin;
         }
@@ -63,5 +65,6 @@ export class NavigationService implements OnInit {
 
     toggleAdmin() {
         this.admin = !this.admin;
+        localStorage.setItem('ypsilon-admin', 'true');
     }
 }

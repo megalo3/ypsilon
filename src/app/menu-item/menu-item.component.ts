@@ -1,13 +1,13 @@
-import { NgClass, NgIf } from '@angular/common';
-import { Component, Input, Type } from '@angular/core';
-import { Resolve, ResolveFn, RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { Component, Input, Type, ChangeDetectionStrategy } from '@angular/core';
+import { Resolve, ResolveFn } from '@angular/router';
 import { IPageData } from '../page/page';
 
 @Component({
     selector: 'app-menu-item',
     templateUrl: './menu-item.component.html',
-    standalone: true,
-    imports: [RouterLink, NgIf, NgClass],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [NgClass]
 })
 export class MenuItemComponent {
     @Input() name: string | Type<Resolve<string>> | ResolveFn<string> = '';

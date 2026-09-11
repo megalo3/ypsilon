@@ -1,5 +1,9 @@
-<div *ngIf="!navigation.admin"><br /></div>
-<div *ngIf="navigation.admin">Welcome, Sonya</div>
+@if (!navigation.admin) {
+  <div><br /></div>
+}
+@if (navigation.admin) {
+  <div>Welcome, Sonya</div>
+}
 <div>{{title}}</div>
 <div>===========</div>
 <br />

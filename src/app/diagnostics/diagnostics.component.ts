@@ -1,16 +1,16 @@
-import { Component, OnDestroy, OnInit, Signal, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, Signal, signal, ChangeDetectionStrategy } from '@angular/core';
 import { TitleComponent } from '../title/title.component';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SlowTypeService, Speed } from '../slow-type.service';
-import { NgFor, NgIf } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 import { NavigationService } from '../navigation.service';
 
 @Component({
     selector: 'app-diagnostics',
-    standalone: true,
-    imports: [TitleComponent, RouterLink, NgFor, NgIf],
-    templateUrl: './diagnostics.component.html',
+    imports: [TitleComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './diagnostics.component.html'
 })
 export class DiagnosticsComponent implements OnInit, OnDestroy {
     chain: Signal<string>[] = [];

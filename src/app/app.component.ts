@@ -1,24 +1,24 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationService } from './navigation.service';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-root',
-    standalone: true,
     imports: [RouterOutlet],
-    templateUrl: './app.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
     title = 'ypsilon';
     keyHistory: string[] = [];
 
-    @HostListener('window:keydown.ArrowUp', ['$event']) onArrowUp() {
+    @HostListener('window:keydown.ArrowUp') onArrowUp() {
         this.nav.navigate.next('Up');
     }
-    @HostListener('window:keydown.ArrowDown', ['$event']) onArrowDown() {
+    @HostListener('window:keydown.ArrowDown') onArrowDown() {
         this.nav.navigate.next('Down');
     }
-    @HostListener('window:keydown.Enter', ['$event']) onEnter() {
+    @HostListener('window:keydown.Enter') onEnter() {
         this.nav.select.next();
     }
     @HostListener('window:keydown', ['$event']) onKeyDown(e: { key: string }) {

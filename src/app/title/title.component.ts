@@ -1,13 +1,13 @@
-import { NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavigationService } from '../navigation.service';
 
 @Component({
     selector: 'app-title',
     templateUrl: './title.component.html',
-    standalone: true,
-    imports: [NgIf]
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: []
 })
 export class TitleComponent implements OnInit {
     title = '';

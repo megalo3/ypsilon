@@ -1,16 +1,15 @@
-import { Component, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, Signal, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 import { TitleComponent } from '../title/title.component';
 import {
     ActivatedRoute,
     Route,
     Router,
-    RouterLink,
     RouterModule,
     RouterOutlet,
 } from '@angular/router';
 import { IPageData } from './page';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ToggleItemComponent } from '../toggle-item/toggle-item.component';
 import { ListComponent } from '../list/list.component';
 import { NavigationService } from '../navigation.service';
@@ -20,21 +19,18 @@ import { SlowTypeService, Speed } from '../slow-type.service';
 
 @Component({
     selector: 'app-page',
-    standalone: true,
     imports: [
-        MenuItemComponent,
-        TitleComponent,
-        RouterLink,
-        NgFor,
-        RouterOutlet,
-        NgIf,
-        ToggleItemComponent,
-        NgClass,
-        ListComponent,
-        RouterModule,
-    ],
+    MenuItemComponent,
+    TitleComponent,
+    RouterOutlet,
+    ToggleItemComponent,
+    NgClass,
+    ListComponent,
+    RouterModule
+],
     templateUrl: './page.component.html',
-    styleUrl: './page.component.scss',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './page.component.scss'
 })
 export class PageComponent implements OnInit, OnDestroy {
     data: IPageData = {};

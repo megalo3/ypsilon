@@ -1,5 +1,5 @@
 <div class="menu-item">
-    <a [ngClass]="{ error: item?.error, selected: selected }">
+    <a [ngClass]="{ error: $safeNavigationMigration(item?.error), selected: selected }">
         &gt; {{ item?.name }} :: {{ item?.status }}</a
     >
 </div>

@@ -12,9 +12,13 @@
 <!-- NOTICE: Mineshaft lift maintained 455 day(s) ago. -->
 <div>{{ chain[14]() }}</div>
 <!-- =========== -->
-<div *ngIf="chain[16]().length > 0"><br /></div>
+@if (chain[16]().length > 0) {
+  <div><br /></div>
+}
 <div>{{ chain[16]() }}</div>
-<div *ngIf="chain[16]().length > 0"><br /></div>
+@if (chain[16]().length > 0) {
+  <div><br /></div>
+}
 <!-- SUMMARY: -->
 <div>{{ chain[17]() }}</div>
 <!-- All systems operating within acceptable parameters. -->

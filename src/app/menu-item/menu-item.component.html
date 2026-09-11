@@ -1,4 +1,6 @@
 <div class="menu-item">
-    <!-- [routerLink]="path" -->
-    <a [ngClass]="{selected: selected}"> &gt; {{ name }} <span *ngIf="data?.admin">[A]</span></a>
+  <!-- [routerLink]="path" -->
+  <a [ngClass]="{selected: selected}"> &gt; {{ name }} @if (data?.admin) {
+    <span>[A]</span>
+  }</a>
 </div>

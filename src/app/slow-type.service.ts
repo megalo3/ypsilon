@@ -1,10 +1,10 @@
-import { Injectable, Signal, signal } from '@angular/core';
+import { Injectable, WritableSignal, signal } from '@angular/core';
 
 export enum Speed {
     Normal = 30,
     Fast = 10,
     Slow = 250,
-    Pause = 500
+    Pause = 500,
 }
 
 @Injectable({
@@ -13,8 +13,11 @@ export enum Speed {
 export class SlowTypeService {
     constructor() {}
 
-    slowType(value: string, time: number = 30): Signal<string> {
-        const slowTypeSignal = signal<string>('');
+    slowType(
+        slowTypeSignal: WritableSignal<string>,
+        value: string,
+        time: number = 30,
+    ): WritableSignal<string> {
         let partialValue = '';
         const timer = setInterval(() => {
             if (value.length === partialValue.length) {
@@ -28,16 +31,13 @@ export class SlowTypeService {
         return slowTypeSignal;
     }
 
-    slowTypeChain(inputs: { value: string; time: number }[]): Signal<string>[] {
-        const signals: Signal<string>[] = [];
-        inputs.forEach(() => signals.push(signal<string>('')));
+    slowTypeChain(inputs: { value: string; time: number }[]): WritableSignal<string>[] {
+        const signals: WritableSignal<string>[] = [];
+        inputs.forEach(() => signals.push(signal('')));
         let totalTime = 0;
         inputs.forEach((input, index) => {
             setTimeout(() => {
-                signals[index] = this.slowType(
-                    input.value,
-                    input.time
-                );
+                this.slowType(signals[index], input.value, input.time);
             }, totalTime);
             totalTime += this.#getTypeFullTime(input.value, input.time);
         });

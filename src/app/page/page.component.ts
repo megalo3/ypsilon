@@ -1,13 +1,7 @@
-import { Component, OnDestroy, OnInit, Signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, Signal, ChangeDetectionStrategy, signal } from '@angular/core';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 import { TitleComponent } from '../title/title.component';
-import {
-    ActivatedRoute,
-    Route,
-    Router,
-    RouterModule,
-    RouterOutlet,
-} from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { IPageData } from './page';
 import { NgClass } from '@angular/common';
 import { ToggleItemComponent } from '../toggle-item/toggle-item.component';
@@ -20,17 +14,17 @@ import { SlowTypeService, Speed } from '../slow-type.service';
 @Component({
     selector: 'app-page',
     imports: [
-    MenuItemComponent,
-    TitleComponent,
-    RouterOutlet,
-    ToggleItemComponent,
-    NgClass,
-    ListComponent,
-    RouterModule
-],
+        MenuItemComponent,
+        TitleComponent,
+        RouterOutlet,
+        ToggleItemComponent,
+        NgClass,
+        ListComponent,
+        RouterModule,
+    ],
     templateUrl: './page.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    styleUrl: './page.component.scss'
+    styleUrl: './page.component.scss',
 })
 export class PageComponent implements OnInit, OnDestroy {
     data: IPageData = {};
@@ -64,7 +58,7 @@ export class PageComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private nav: NavigationService,
         private router: Router,
-        private slowType: SlowTypeService
+        private slowType: SlowTypeService,
     ) {}
 
     ngOnInit(): void {
@@ -74,11 +68,10 @@ export class PageComponent implements OnInit, OnDestroy {
         this.#subscriptions.add(
             this.nav.navigate.subscribe((direction) => {
                 if (!this.hasChildren) {
-                    const length =
-                        this.items.length + (this.hasBackButton ? 1 : 0);
+                    const length = this.items.length + (this.hasBackButton ? 1 : 0);
                     this.nav.loopNav(direction, length);
                 }
-            })
+            }),
         );
         this.#subscriptions.add(
             this.nav.select.subscribe(() => {
@@ -87,7 +80,7 @@ export class PageComponent implements OnInit, OnDestroy {
                     const child = this.items[this.selectedIndex - 1];
                     this.selectItem(child);
                 }
-            })
+            }),
         );
 
         if (this.data.intro) {
@@ -96,7 +89,7 @@ export class PageComponent implements OnInit, OnDestroy {
                 time: Speed.Normal,
             }));
             this.introChain = this.slowType.slowTypeChain(chainValues);
-    }
+        }
     }
 
     ngOnDestroy(): void {

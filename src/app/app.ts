@@ -6,9 +6,9 @@ import { RouterOutlet } from '@angular/router';
     selector: 'app-root',
     imports: [RouterOutlet],
     changeDetection: ChangeDetectionStrategy.Eager,
-    templateUrl: './app.component.html'
+    templateUrl: './app.html',
 })
-export class AppComponent {
+export class App {
     title = 'ypsilon';
     keyHistory: string[] = [];
 

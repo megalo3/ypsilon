@@ -4,7 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build --configuration=production --base-href https://megalo3.github.io/ypsilon/ && @powershell copy ./dist/ypsilon/index.html ./dist/ypsilon/404.html",
+        "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "deploy": "ng deploy --base-href=/ypsilon/"
@@ -34,7 +34,8 @@
         "@angular/router": "^22.1.6",
         "bootstrap": "^5.3.8",
         "rxjs": "~7.8.0",
-        "tslib": "^2.3.0"
+        "tslib": "^2.3.0",
+        "zone.js": "~0.15.1"
     },
     "devDependencies": {
         "@angular/build": "^22.1.8",
